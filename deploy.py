@@ -1,6 +1,7 @@
 from google.cloud import aiplatform
 import os
 
+<<<<<<< HEAD
 # Load environment variables
 PROJECT_ID = os.environ['PROJECT_ID']
 REGION = os.environ.get('REGION', 'us-central1')
@@ -46,3 +47,19 @@ model.deploy(
 )
 
 print("✅ Model deployed successfully.")
+=======
+PROJECT_ID = "studious-pulsar-468715-d6"
+REGION = "us-central1"
+BUCKET_NAME = "data-analytics-prod-2847-kw-region"
+
+aiplatform.init(project=PROJECT_ID, location=REGION, staging_bucket=BUCKET_NAME)
+
+model = aiplatform.Model.upload(
+    display_name="csv-model",
+    artifact_uri=f"gs://{BUCKET_NAME}/model/",
+    serving_container_image_uri="us-docker.pkg.dev/vertex-ai/prediction/sklearn-cpu.0-24:latest"
+)
+
+endpoint = aiplatform.Endpoint.create(display_name="csv-endpoint")
+model.deploy(endpoint=endpoint, machine_type="n1-standard-2")
+>>>>>>> 2d4d5bcf631f7fb5ef4aa087f3466ee4dd66fc1d
