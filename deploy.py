@@ -59,7 +59,7 @@ try:
     logger.info(f"Endpoint created: {endpoint.resource_name}")
 
     logger.info("Deploying model to endpoint...")
-    model.deploy(endpoint=endpoint, machine_type="n1-standard-2")
+    model.deploy(endpoint=endpoint, machine_type="n1-standard-4")
     logger.info("Model deployed successfully")
 
 except Exception as e:
