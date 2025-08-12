@@ -60,3 +60,16 @@ try:
     print("Model loaded successfully")
 except Exception as e:
     print(f"Failed to load: {str(e)}")
+
+
+# ...existing code...
+try:
+    model = joblib.load('model/model.joblib')  # Test locally first
+    print("Model loaded successfully")
+    # Predict for instance [1, 1]
+    sample = [[1, 1]]
+    prediction = model.predict(sample)
+    print(f"Prediction for [1, 1]: {prediction[0]}")
+except Exception as e:
+    print(f"Failed to load: {str(e)}")
+# ...existing code...
