@@ -20,4 +20,4 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
   
-timeout: "1200000000s"  # 20 mins
+timeout: "86400s"  # 20 mins
