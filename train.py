@@ -3,7 +3,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import joblib
-from google.cloud import storage
+# from google.cloud import storage
 from sklearn.metrics import mean_squared_error, r2_score
 
 import os
@@ -47,10 +47,16 @@ model_path = "model/model.joblib"
 joblib.dump(model, model_path)
 print(f"💾 Model saved locally at {model_path}")
 
-# === Step 6: Upload model to GCS ===
-storage_client = storage.Client()
-bucket = storage_client.bucket(BUCKET_NAME)
-blob = bucket.blob("model/model.joblib")
-blob.upload_from_filename(model_path)
+# # === Step 6: Upload model to GCS ===
+# storage_client = storage.Client()
+# bucket = storage_client.bucket(BUCKET_NAME)
+# blob = bucket.blob("model/model.joblib")
+# blob.upload_from_filename(model_path)
 
-print(f"☁️ Model uploaded to gs://{BUCKET_NAME}/model/model.joblib")
+# print(f"☁️ Model uploaded to gs://{BUCKET_NAME}/model/model.joblib")
+
+try:
+    model = joblib.load('model/model.joblib')  # Test locally first
+    print("Model loaded successfully")
+except Exception as e:
+    print(f"Failed to load: {str(e)}")
