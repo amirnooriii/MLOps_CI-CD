@@ -1,26 +1,22 @@
-steps:
-  # Step 1: install packages (example step)
-  - name: 'python:3.9'
+  # Step 0: Install Python dependencies
+  - name: 'installing requirements'
     entrypoint: 'pip'
     args: ['install', '-r', 'requirements.txt']
-    id: 'install-deps'
-
-  # Step 2: Train your model and upload it to a GCS bucket(example step)
-  - name: 'python:3.9'
+    id: 'install-dependencies'  
+  
+  # Step 1: Train your model and upload it to a GCS bucket(example step)
+  - name: 'train'
     entrypoint: 'python'
     args: ['train.py']
     id: 'train-model'
-    waitFor: ['install-deps']
     secretEnv: ['BUCKET_NAME', 'BUCKET_ID']
+    waitFor: ['install-dependencies']
 
- # Step 3: Deploy the model to an endpoint
-  - name: 'python:3.10'
-    entrypoint: bash
-    args:
-      - -c
-      - |
-        pip install -r requirements.txt
-        python deploy.py
+ # Step 2: Deploy the model to an endpoint
+  - name: 'deployment'
+    entrypoint: 'python'
+    args: ['deploy.py']
+    waitFor: ['train-model']
 
 # Define available secrets for the build
 availableSecrets:
