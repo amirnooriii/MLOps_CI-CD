@@ -14,7 +14,7 @@ steps:
     secretEnv: ['BUCKET_NAME', 'BUCKET_ID']
 
  # Step 3: Deploy the model to an endpoint
-- name: 'python:3.10'
+  - name: 'python:3.10'
     entrypoint: bash
     args:
       - -c
