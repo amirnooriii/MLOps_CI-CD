@@ -1,3 +1,24 @@
+# from google.cloud import aiplatform
+# import os
+
+# PROJECT_ID = "studious-pulsar-468715-d6"
+# REGION = "us-central1"
+# BUCKET_NAME = "data-analytics-prod-2847-kw-region"
+
+# aiplatform.init(project=PROJECT_ID, location=REGION, staging_bucket=BUCKET_NAME)
+
+# model = aiplatform.Model.upload(
+#     display_name="trained-model",
+#     artifact_uri=f"gs://{BUCKET_NAME}/model/",
+#     serving_container_image_uri="us-docker.pkg.dev/vertex-ai/prediction/sklearn-cpu.1-0:latest"
+# )
+
+
+
+# endpoint = aiplatform.Endpoint.create(display_name="endpoint")
+# model.deploy(endpoint=endpoint, machine_type="n1-standard-2")
+
+
 import logging
 import os
 import sys
@@ -14,8 +35,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
+# Configuration
+PROJECT_ID = "studious-pulsar-468715-d6"
 REGION = "us-central1"
+BUCKET_NAME = "data-analytics-prod-2847-kw-region"
 
 try:
     logger.info("Initializing Vertex AI client...")
