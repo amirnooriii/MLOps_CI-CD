@@ -7,16 +7,14 @@ steps:
 
   # Step 1: Train your model and upload it to a GCS bucket (example step)
   - name: 'python:3.9'
-    entrypoint: 'python'
-    args: ['train.py']
+    args: ['python', 'train.py']
     id: 'train-model'
     secretEnv: ['BUCKET_NAME', 'BUCKET_ID']
     waitFor: ['install-dependencies']
 
   # Step 2: Deploy the model to an endpoint
   - name: 'python:3.9'
-    # entrypoint: 'python'
-    args: ['deploy.py']
+    args: ['python', 'deploy.py']
     waitFor: ['train-model']
 
 # Define available secrets for the build
