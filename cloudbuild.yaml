@@ -7,7 +7,7 @@ steps:
 
   # Step 1: Train your model and upload it to a GCS bucket (example step)
   - name: 'python:3.9'
-    args: ['python', 'train.py']
+    args: ['python', '-u', 'train.py']
     id: 'train-model'
     secretEnv: ['BUCKET_NAME', 'BUCKET_ID']
     waitFor: ['install-dependencies']
