@@ -19,14 +19,12 @@ REGION = "us-central1"
 
 try:
     logger.info("Initializing Vertex AI client...")
-    aiplatform.init(project=PROJECT_ID, location=REGION, staging_bucket=f"gs://{BUCKET_NAME}")
+    aiplatform.init(project={PROJECT_ID}, location=REGION, staging_bucket=f"gs://{BUCKET_NAME}")
 
     logger.info("Uploading model...")
     model = aiplatform.Model.upload(
         display_name="trained-model",
         artifact_uri=f"gs://{BUCKET_NAME}/model/",
-        # serving_container_image_uri="us-docker.pkg.dev/vertex-ai/prediction/sklearn-cpu.0-24:latest"
-        # In the model.upload() call:
         serving_container_image_uri="us-docker.pkg.dev/vertex-ai/prediction/sklearn-cpu.1-5:latest"
     )
     logger.info(f"Model uploaded successfully: {model.resource_name}")

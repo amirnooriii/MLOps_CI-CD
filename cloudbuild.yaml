@@ -1,12 +1,12 @@
 steps:
   # Step 0: Install Python dependencies
-  - name: 'python:3.9'
+  - name: 'python'
     entrypoint: 'pip'
     args: ['install', '-r', 'requirements.txt']
     id: 'install-dependencies'
 
   # Step 1: Train your model and upload it to a GCS bucket (example step)
-  - name: 'python:3.9'
+  - name: 'python'
     entrypoint: 'python'
     args: ['train.py']
     id: 'train-model'
@@ -22,12 +22,12 @@ steps:
 # Define available secrets for the build
 availableSecrets:
   secretManager:
-    - versionName: projects/$PROJECT_ID/secrets/BUCKET_NAME/versions/latest
+    - versionName: projects/$PROJECT_ID/secrets/BUCKET_NAME/versions/1
       env: 'BUCKET_NAME'
-    - versionName: projects/$PROJECT_ID/secrets/BUCKET_ID/versions/latest
+    - versionName: projects/$PROJECT_ID/secrets/BUCKET_ID/versions/1
       env: 'BUCKET_ID'
 
-options:
-  logging: CLOUD_LOGGING_ONLY
+# options:
+#   logging: CLOUD_LOGGING_ONLY
 
 timeout: "86400s"
