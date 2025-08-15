@@ -6,7 +6,7 @@ steps:
     id: 'install-dependencies'
 
   # Step 1: Train your model and upload it to a GCS bucket (example step)
-  - name: 'python'
+  - name: 'python:3.9'
     entrypoint: 'python'
     args: ['train.py']
     id: 'train-model'
