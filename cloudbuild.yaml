@@ -1,9 +1,13 @@
 steps:
   # Step 0: Install Python dependencies
-  - name: 'python'
+  - name: 'python:3.9'
     entrypoint: 'pip'
     args: ['install', '-r', 'requirements.txt']
     id: 'install-dependencies'
+
+  - name: 'python:3.9'
+    entrypoint: 'pip'
+    args: ['list']
 
   # Step 1: Train your model and upload it to a GCS bucket (example step)
   - name: 'python:3.9'
