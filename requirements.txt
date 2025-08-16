@@ -4,5 +4,5 @@ google-cloud-storage==2.17.0
 google-cloud-aiplatform==1.63.0
 numpy>=1.21.0,<2.0.0
 scipy>=1.12.0
-pandas>=2.0.0,<3.0.0
+pandas==2.3.1
 scikit-learn>=1.5.0
