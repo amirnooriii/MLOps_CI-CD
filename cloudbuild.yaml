@@ -1,6 +1,6 @@
 steps:
   # Step 0: Install Python dependencies in a virtual environment
-  - name: 'python:3.9'  # Keeping the non-slim image as in your original file
+  - name: 'python:3.12'  # Updated to Python 3.12 to support scipy==1.16.1, which requires Python >=3.11
     entrypoint: 'bash'
     args:
       - '-c'
@@ -11,7 +11,7 @@ steps:
     id: 'install-dependencies'
 
   # Step 1: Train your model and upload it to a GCS bucket (example step)
-  - name: 'python:3.9'
+  - name: 'python:3.12'
     entrypoint: 'bash'
     args:
       - '-c'
@@ -24,7 +24,7 @@ steps:
     waitFor: ['install-dependencies']
 
   # Step 2: Deploy the model to an endpoint
-  - name: 'python:3.9'
+  - name: 'python:3.12'
     entrypoint: 'bash'
     args:
       - '-c'
